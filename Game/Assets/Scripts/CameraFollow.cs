@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Windows.WebCam;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -11,8 +10,8 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-         cameraPos = transform.position;
-         playerPos = player.transform.position;
+        cameraPos = transform.position;
+        playerPos = player.transform.position;
     }
 
     // Update is called once per frame

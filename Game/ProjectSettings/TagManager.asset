@@ -6,6 +6,10 @@ TagManager:
   tags:
   - CarLeft
   - CarRight
+  - Road
+  - Road1
+  - Road2
+  - Road3
   layers:
   - Default
   - TransparentFX

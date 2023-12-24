@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarLeftRight : MonoBehaviour
@@ -16,13 +14,11 @@ public class CarLeftRight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.CompareTag("CarRight") && MoveScript.gameOver == false)
+        if (MoveScript.gameOver == false)
         {
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
-        else if(gameObject.CompareTag("CarLeft") && MoveScript.gameOver == false)
-        {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
-        }
+
+
     }
 }

@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    public float speed;
     public float maxX = 10;
     public float minY = -4;
     public bool gameOver = false;
@@ -16,16 +15,21 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        float y = Input.GetAxisRaw("Vertical");
-        float x = Input.GetAxisRaw("Horizontal");
-        if (y != 0 && !gameOver)
+        if (Input.GetKeyDown(KeyCode.W) && !gameOver)
         {
-            transform.Translate(Vector3.up * y * speed * Time.deltaTime);
+            transform.Translate(Vector3.up * 2);
         }
-        else if (x != 0 && !gameOver)
+        else if (Input.GetKeyDown(KeyCode.S) && !gameOver)
         {
-            transform.Translate(Vector3.right * x * speed * Time.deltaTime);
+            transform.Translate(Vector3.down * 2);
+        }
+        else if (Input.GetKeyDown(KeyCode.A) && !gameOver)
+        {
+            transform.Translate(Vector3.left * 2);
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && !gameOver)
+        {
+            transform.Translate(Vector3.right * 2);
         }
         if (transform.position.x < -maxX)
         {
