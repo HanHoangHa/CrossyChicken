@@ -1,17 +1,26 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class Move : MonoBehaviour
 {
     public float maxX = 10;
     public float minY = -4;
     public bool gameOver = false;
+    public GameObject gameOverUI;
+    private int score = 0;
+    public Text scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        scoreText.text = score.ToString();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -43,11 +52,36 @@ public class Move : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, minY, transform.position.z);
         }
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameOver = true;
+            gameOverUI.SetActive(true);
+        }
+        if (gameOverUI.activeInHierarchy)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+   private void OnCollisionEnter2D(Collision2D collision)
+   {
+       gameOver = true;
+        gameOverUI.SetActive(true);
+       Debug.Log("GameOver");
+   }
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameOver = true;
-        Debug.Log(gameOver);
+        score += 1;
+        scoreText.text = score.ToString();
+        BoxCollider2D.Destroy(collision);
     }
+
 }

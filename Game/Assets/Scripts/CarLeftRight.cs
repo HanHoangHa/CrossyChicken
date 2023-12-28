@@ -4,7 +4,6 @@ public class CarLeftRight : MonoBehaviour
 {
     public float speed = 10;
     private Move MoveScript;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +18,6 @@ public class CarLeftRight : MonoBehaviour
             transform.Translate(Vector3.left * speed * Time.deltaTime);
         }
 
-
+        
     }
 }
