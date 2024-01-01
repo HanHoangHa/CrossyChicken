@@ -31,7 +31,7 @@ public class SpawnManager : MonoBehaviour
         if (MoveScript.gameOver == false && rangeY > 0)
         {
             int randomGrassRoad = Random.Range(0, grassAndRoad.Length);
-            Vector3 spawnPosition = new Vector3(0, 8, 0) + new Vector3(0, currentY + 4, 0);
+            Vector3 spawnPosition = new Vector3(0, 8, 0) + new Vector3(0, currentY + 2, 0);
             Instantiate(grassAndRoad[randomGrassRoad], spawnPosition, grassAndRoad[randomGrassRoad].transform.rotation);
             previousY = currentY;
         }
