@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class Move : MonoBehaviour
 {
-    public float maxX = 10;
-    public float minY = -4;
+    private float maxX = 8;
+    private float minY = -4;
     public bool gameOver = false;
     public GameObject gameOverUI;
     private int score = 0;
@@ -81,7 +81,7 @@ public class Move : MonoBehaviour
         gameOver = true;
         gameOverUI.SetActive(true);
         playerAudio.PlayOneShot(crash, 1f);
-        Debug.Log("GameOver");   
+        Debug.Log("GameOver");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
