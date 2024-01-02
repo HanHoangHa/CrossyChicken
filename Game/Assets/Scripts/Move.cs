@@ -12,6 +12,7 @@ public class Move : MonoBehaviour
     public AudioClip jump;
     public AudioClip crash;
     private AudioSource playerAudio;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class Move : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         playerAudio = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -38,11 +40,13 @@ public class Move : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.A) && !gameOver)
         {
             transform.Translate(Vector3.left * 2);
+            spriteRenderer.flipX = false;
             playerAudio.PlayOneShot(jump, 1f);
         }
         else if (Input.GetKeyDown(KeyCode.D) && !gameOver)
         {
             transform.Translate(Vector3.right * 2);
+            spriteRenderer.flipX = true;
             playerAudio.PlayOneShot(jump, 1f);
         }
         if (transform.position.x < -maxX)
@@ -75,7 +79,6 @@ public class Move : MonoBehaviour
         }
 
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gameOver = true;
