@@ -52,19 +52,19 @@ public class Move : MonoBehaviour
             spriteRenderer.flipX = true;
             playerAudio.PlayOneShot(jump, 1f);
         }
-        if (transform.position.y < (posChicken.y - 0.2))
+        if (transform.position.y < (posChicken.y - 0.2) && !gameOver)
         {
             transform.Translate(Vector3.up * speedChicken);
         }
-        else if (transform.position.y > (posChicken.y + 0.2))
+        else if (transform.position.y > (posChicken.y + 0.2) && !gameOver)
         {
             transform.Translate(Vector3.down * speedChicken);
         }
-        else if (transform.position.x < (posChicken.x - 0.2))
+        else if (transform.position.x < (posChicken.x - 0.2) && !gameOver)
         {
             transform.Translate(Vector3.right * speedChicken);
         }
-        else if (transform.position.x > (posChicken.x + 0.2))
+        else if (transform.position.x > (posChicken.x + 0.2) && !gameOver)
         {
             transform.Translate(Vector3.left * speedChicken);
         }
