@@ -11,8 +11,10 @@ public class Move : MonoBehaviour
     public Text scoreText;
     public AudioClip jump;
     public AudioClip crash;
+    public AudioClip death;
     private AudioSource playerAudio;
     private SpriteRenderer spriteRenderer;
+    float posYChicken;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +24,13 @@ public class Move : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         playerAudio = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        posYChicken = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Di chuyển
         if (Input.GetKeyDown(KeyCode.W) && !gameOver)
         {
             transform.Translate(Vector3.up * 2);
@@ -49,19 +53,30 @@ public class Move : MonoBehaviour
             spriteRenderer.flipX = true;
             playerAudio.PlayOneShot(jump, 1f);
         }
-        if (transform.position.x < -maxX)
-        {
-            transform.position = new Vector3(-maxX, transform.position.y, transform.position.z);
-        }
-        else if (transform.position.x > maxX)
-        {
-            transform.position = new Vector3(maxX, transform.position.y, transform.position.z);
-        }
-        else if (transform.position.y < minY)
+        //Giới hạn di chuyển X
+        Vector3 newPosition = transform.position;
+        newPosition.x = Mathf.Clamp(newPosition.x, -maxX, maxX);
+        transform.position = newPosition;
+        //Giới hạn di chuyển Y
+        if (transform.position.y < minY)
         {
             transform.position = new Vector3(transform.position.x, minY, transform.position.z);
         }
-
+        //Giới hạn lùi
+        if(transform.position.y > posYChicken)
+        {
+            posYChicken = transform.position.y;
+        }
+        if(posYChicken - transform.transform.position.y > 6)
+        {
+            gameOver = true;
+            Debug.Log(gameOver);
+            posYChicken = transform.position.y;
+            playerAudio.PlayOneShot(death, 1f);
+            gameOverUI.SetActive(true);
+        }
+        Debug.Log(transform.position);
+        //Menu game over
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameOver = true;
@@ -79,6 +94,7 @@ public class Move : MonoBehaviour
         }
 
     }
+    //Kiểm tra va chạm
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gameOver = true;
@@ -86,6 +102,7 @@ public class Move : MonoBehaviour
         playerAudio.PlayOneShot(crash, 1f);
         Debug.Log("GameOver");
     }
+    //Tính điểm
     private void OnTriggerEnter2D(Collider2D collision)
     {
         score += 1;
