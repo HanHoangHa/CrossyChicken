@@ -1,17 +1,20 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class Move : MonoBehaviour
 {
-    public float maxX = 10;
-    public float minY = -4;
+    private float maxX = 8;
+    private float minY = -4;
     public bool gameOver = false;
     public GameObject gameOverUI;
     private int score = 0;
     public Text scoreText;
+    public Text endScore;
+    public Text scoreFont;
+    public AudioClip jump;
+    public AudioClip crash;
+    private AudioSource playerAudio;
+    private SpriteRenderer spriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -19,26 +22,34 @@ public class Move : MonoBehaviour
         scoreText.text = score.ToString();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        playerAudio = GetComponent<AudioSource>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.W) && !gameOver)
         {
             transform.Translate(Vector3.up * 2);
+            playerAudio.PlayOneShot(jump, 1f);
         }
         else if (Input.GetKeyDown(KeyCode.S) && !gameOver)
         {
             transform.Translate(Vector3.down * 2);
+            playerAudio.PlayOneShot(jump, 1f);
         }
         else if (Input.GetKeyDown(KeyCode.A) && !gameOver)
         {
             transform.Translate(Vector3.left * 2);
+            spriteRenderer.flipX = false;
+            playerAudio.PlayOneShot(jump, 1f);
         }
         else if (Input.GetKeyDown(KeyCode.D) && !gameOver)
         {
             transform.Translate(Vector3.right * 2);
+            spriteRenderer.flipX = true;
+            playerAudio.PlayOneShot(jump, 1f);
         }
         if (transform.position.x < -maxX)
         {
@@ -52,7 +63,7 @@ public class Move : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, minY, transform.position.z);
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameOver = true;
@@ -70,13 +81,16 @@ public class Move : MonoBehaviour
         }
 
     }
-
-   private void OnCollisionEnter2D(Collision2D collision)
-   {
-       gameOver = true;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        gameOver = true;
         gameOverUI.SetActive(true);
-       Debug.Log("GameOver");
-   }
+        endScore.text = scoreText.text;
+        scoreFont.text = "";
+        scoreText.text = "";
+        playerAudio.PlayOneShot(crash, 1f);
+        Debug.Log("GameOver");
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         score += 1;
