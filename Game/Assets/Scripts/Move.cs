@@ -11,10 +11,15 @@ public class Move : MonoBehaviour
     public Text scoreText;
     public AudioClip jump;
     public AudioClip crash;
+    public AudioClip death;
     private AudioSource playerAudio;
     private SpriteRenderer spriteRenderer;
+<<<<<<< HEAD
     Vector3 posChicken;
     float speedChicken = 0.2f;
+=======
+    float posYChicken;
+>>>>>>> 825af318d6eb6a7f025294fbf624179326999e4c
 
     // Start is called before the first frame update
     void Start()
@@ -24,12 +29,17 @@ public class Move : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         playerAudio = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+<<<<<<< HEAD
         posChicken = transform.position;
+=======
+        posYChicken = transform.position.y;
+>>>>>>> 825af318d6eb6a7f025294fbf624179326999e4c
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Di chuyển
         if (Input.GetKeyDown(KeyCode.W) && !gameOver)
         {
             posChicken += new Vector3(0, 2, 0);
@@ -52,6 +62,7 @@ public class Move : MonoBehaviour
             spriteRenderer.flipX = true;
             playerAudio.PlayOneShot(jump, 1f);
         }
+<<<<<<< HEAD
         if (transform.position.y < (posChicken.y - 0.2) && !gameOver)
         {
             transform.Translate(Vector3.up * speedChicken);
@@ -78,10 +89,32 @@ public class Move : MonoBehaviour
             transform.position = new Vector3(maxX, transform.position.y, transform.position.z);
         }
         else if (transform.position.y < minY)
+=======
+        //Giới hạn di chuyển X
+        Vector3 newPosition = transform.position;
+        newPosition.x = Mathf.Clamp(newPosition.x, -maxX, maxX);
+        transform.position = newPosition;
+        //Giới hạn di chuyển Y
+        if (transform.position.y < minY)
+>>>>>>> 825af318d6eb6a7f025294fbf624179326999e4c
         {
             transform.position = new Vector3(transform.position.x, minY, transform.position.z);
         }
-
+        //Giới hạn lùi
+        if(transform.position.y > posYChicken)
+        {
+            posYChicken = transform.position.y;
+        }
+        if(posYChicken - transform.transform.position.y > 6)
+        {
+            gameOver = true;
+            Debug.Log(gameOver);
+            posYChicken = transform.position.y;
+            playerAudio.PlayOneShot(death, 1f);
+            gameOverUI.SetActive(true);
+        }
+        Debug.Log(transform.position);
+        //Menu game over
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameOver = true;
@@ -99,6 +132,7 @@ public class Move : MonoBehaviour
         }
 
     }
+    //Kiểm tra va chạm
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gameOver = true;
@@ -106,6 +140,7 @@ public class Move : MonoBehaviour
         playerAudio.PlayOneShot(crash, 1f);
         Debug.Log("GameOver");
     }
+    //Tính điểm
     private void OnTriggerEnter2D(Collider2D collision)
     {
         score += 1;
