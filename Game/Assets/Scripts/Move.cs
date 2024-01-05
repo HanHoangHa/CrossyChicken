@@ -13,6 +13,8 @@ public class Move : MonoBehaviour
     public AudioClip crash;
     private AudioSource playerAudio;
     private SpriteRenderer spriteRenderer;
+    Vector3 posChicken;
+    float speedChicken = 0.2f;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class Move : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         playerAudio = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        posChicken = transform.position;
     }
 
     // Update is called once per frame
@@ -29,26 +32,43 @@ public class Move : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) && !gameOver)
         {
-            transform.Translate(Vector3.up * 2);
+            posChicken += new Vector3(0, 2, 0);
             playerAudio.PlayOneShot(jump, 1f);
         }
         else if (Input.GetKeyDown(KeyCode.S) && !gameOver)
         {
-            transform.Translate(Vector3.down * 2);
+            posChicken += new Vector3(0, -2, 0);
             playerAudio.PlayOneShot(jump, 1f);
         }
         else if (Input.GetKeyDown(KeyCode.A) && !gameOver)
         {
-            transform.Translate(Vector3.left * 2);
+            posChicken += new Vector3(-2, 0, 0);
             spriteRenderer.flipX = false;
             playerAudio.PlayOneShot(jump, 1f);
         }
         else if (Input.GetKeyDown(KeyCode.D) && !gameOver)
         {
-            transform.Translate(Vector3.right * 2);
+            posChicken += new Vector3(2, 0, 0);
             spriteRenderer.flipX = true;
             playerAudio.PlayOneShot(jump, 1f);
         }
+        if (transform.position.y < (posChicken.y - 0.2))
+        {
+            transform.Translate(Vector3.up * speedChicken);
+        }
+        else if (transform.position.y > (posChicken.y + 0.2))
+        {
+            transform.Translate(Vector3.down * speedChicken);
+        }
+        else if (transform.position.x < (posChicken.x - 0.2))
+        {
+            transform.Translate(Vector3.right * speedChicken);
+        }
+        else if (transform.position.x > (posChicken.x + 0.2))
+        {
+            transform.Translate(Vector3.left * speedChicken);
+        }
+
         if (transform.position.x < -maxX)
         {
             transform.position = new Vector3(-maxX, transform.position.y, transform.position.z);
