@@ -14,12 +14,8 @@ public class Move : MonoBehaviour
     public AudioClip death;
     private AudioSource playerAudio;
     private SpriteRenderer spriteRenderer;
-<<<<<<< HEAD
     Vector3 posChicken;
-    float speedChicken = 0.2f;
-=======
-    float posYChicken;
->>>>>>> 825af318d6eb6a7f025294fbf624179326999e4c
+    float speedChicken = 0.25f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +25,7 @@ public class Move : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         playerAudio = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-<<<<<<< HEAD
         posChicken = transform.position;
-=======
-        posYChicken = transform.position.y;
->>>>>>> 825af318d6eb6a7f025294fbf624179326999e4c
     }
 
     // Update is called once per frame
@@ -47,73 +39,51 @@ public class Move : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.S) && !gameOver)
         {
+
             posChicken += new Vector3(0, -2, 0);
             playerAudio.PlayOneShot(jump, 1f);
+            if (posChicken.y < minY)
+            {
+                posChicken -= new Vector3(0, -2, 0);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.A) && !gameOver)
         {
             posChicken += new Vector3(-2, 0, 0);
             spriteRenderer.flipX = false;
             playerAudio.PlayOneShot(jump, 1f);
+            if (posChicken.x < -maxX)
+            {
+                posChicken -= new Vector3(-2, 0, 0);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.D) && !gameOver)
         {
             posChicken += new Vector3(2, 0, 0);
             spriteRenderer.flipX = true;
             playerAudio.PlayOneShot(jump, 1f);
+            if (posChicken.x > maxX)
+            {
+                posChicken -= new Vector3(2, 0, 0);
+            }
         }
-<<<<<<< HEAD
-        if (transform.position.y < (posChicken.y - 0.2) && !gameOver)
+        if (transform.position.y <= (posChicken.y - 0.25) && !gameOver)
         {
             transform.Translate(Vector3.up * speedChicken);
         }
-        else if (transform.position.y > (posChicken.y + 0.2) && !gameOver)
+        else if (transform.position.y >= (posChicken.y + 0.25) && !gameOver)
         {
             transform.Translate(Vector3.down * speedChicken);
         }
-        else if (transform.position.x < (posChicken.x - 0.2) && !gameOver)
+        else if (transform.position.x <= (posChicken.x - 0.25) && !gameOver)
         {
             transform.Translate(Vector3.right * speedChicken);
         }
-        else if (transform.position.x > (posChicken.x + 0.2) && !gameOver)
+        else if (transform.position.x >= (posChicken.x + 0.25) && !gameOver)
         {
             transform.Translate(Vector3.left * speedChicken);
         }
 
-        if (transform.position.x < -maxX)
-        {
-            transform.position = new Vector3(-maxX, transform.position.y, transform.position.z);
-        }
-        else if (transform.position.x > maxX)
-        {
-            transform.position = new Vector3(maxX, transform.position.y, transform.position.z);
-        }
-        else if (transform.position.y < minY)
-=======
-        //Giới hạn di chuyển X
-        Vector3 newPosition = transform.position;
-        newPosition.x = Mathf.Clamp(newPosition.x, -maxX, maxX);
-        transform.position = newPosition;
-        //Giới hạn di chuyển Y
-        if (transform.position.y < minY)
->>>>>>> 825af318d6eb6a7f025294fbf624179326999e4c
-        {
-            transform.position = new Vector3(transform.position.x, minY, transform.position.z);
-        }
-        //Giới hạn lùi
-        if(transform.position.y > posYChicken)
-        {
-            posYChicken = transform.position.y;
-        }
-        if(posYChicken - transform.transform.position.y > 6)
-        {
-            gameOver = true;
-            Debug.Log(gameOver);
-            posYChicken = transform.position.y;
-            playerAudio.PlayOneShot(death, 1f);
-            gameOverUI.SetActive(true);
-        }
-        Debug.Log(transform.position);
         //Menu game over
         if (Input.GetKeyDown(KeyCode.Escape))
         {

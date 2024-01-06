@@ -5,8 +5,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] car;
     public GameObject[] grassAndRoad;
     private Move MoveScript;
-    private float startDelay = 2f;
-    private float spawnInterval = 2f;
+    private float startDelay = 3f;
+    private float spawnInterval = 3f;
     private float previousY;
     private int[] posXArray = { 11, 13, 15, 17, 19, 21, -11, -13, -15, -17, -19, -21 };
 
