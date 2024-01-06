@@ -1462,6 +1462,7 @@ MonoBehaviour:
   scoreText: {fileID: 1819734064}
   jump: {fileID: 8300000, guid: cdb500bfa43ba9e4fa2c10dc21501a7a, type: 3}
   crash: {fileID: 8300000, guid: 7c8170362c4143f41933620ba08a38db, type: 3}
+  death: {fileID: 0}
 --- !u!212 &1674994772
 SpriteRenderer:
   m_ObjectHideFlags: 0

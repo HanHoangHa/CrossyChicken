@@ -67,19 +67,19 @@ public class Move : MonoBehaviour
                 posChicken -= new Vector3(2, 0, 0);
             }
         }
-        if (transform.position.y <= (posChicken.y - 0.25) && !gameOver)
+        if (transform.position.y <= (posChicken.y - 0.2) && !gameOver)
         {
             transform.Translate(Vector3.up * speedChicken);
         }
-        else if (transform.position.y >= (posChicken.y + 0.25) && !gameOver)
+        else if (transform.position.y >= (posChicken.y + 0.2) && !gameOver)
         {
             transform.Translate(Vector3.down * speedChicken);
         }
-        else if (transform.position.x <= (posChicken.x - 0.25) && !gameOver)
+        else if (transform.position.x <= (posChicken.x - 0.2) && !gameOver)
         {
             transform.Translate(Vector3.right * speedChicken);
         }
-        else if (transform.position.x >= (posChicken.x + 0.25) && !gameOver)
+        else if (transform.position.x >= (posChicken.x + 0.2) && !gameOver)
         {
             transform.Translate(Vector3.left * speedChicken);
         }

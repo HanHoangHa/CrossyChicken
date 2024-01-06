@@ -4,8 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - CarLeft
-  - CarRight
   - Road
   - Road1
   - Road2
@@ -14,6 +12,7 @@ TagManager:
   - Car2
   - Car3
   - Car4
+  - House
   layers:
   - Default
   - TransparentFX
