@@ -4,7 +4,7 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] car;
     public GameObject[] grassAndRoad;
-    private Move MoveScript;
+    private Move moveScript;
     private float startDelay = 3f;
     private float spawnInterval = 3f;
     private float previousY;
@@ -14,7 +14,7 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("SpawnCar", startDelay, spawnInterval);
-        MoveScript = GameObject.Find("Chicken").GetComponent<Move>();
+        moveScript = GameObject.Find("Chicken").GetComponent<Move>();
         previousY = GameObject.Find("Chicken").transform.position.y;
     }
 
@@ -29,7 +29,7 @@ public class SpawnManager : MonoBehaviour
 
         float currentY = GameObject.Find("Chicken").transform.position.y;
         float rangeY = currentY - previousY;
-        if (Input.GetKeyDown(KeyCode.W) && MoveScript.gameOver == false && rangeY > 0)
+        if (Input.GetKeyDown(KeyCode.W) && moveScript.gameOver == false && rangeY > 0)
         {
             previousY += 2;
             int randomGrassRoad = Random.Range(0, grassAndRoad.Length);
@@ -39,7 +39,7 @@ public class SpawnManager : MonoBehaviour
     }
     void SpawnCar()
     {
-        if (MoveScript.gameOver == false)
+        if (moveScript.gameOver == false)
         {
             GameObject[] roadObjects = GameObject.FindGameObjectsWithTag("Road");
             foreach (GameObject roadObject in roadObjects)
