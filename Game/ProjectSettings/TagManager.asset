@@ -4,12 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - CarLeft
-  - CarRight
   - Road
   - Road1
   - Road2
   - Road3
+  - Car1
+  - Car2
+  - Car3
+  - Car4
+  - River
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Stand
   - 
   - 
   - 
