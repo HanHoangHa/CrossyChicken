@@ -13,7 +13,11 @@ GameObject:
   - component: {fileID: 5182651815772377260}
   - component: {fileID: 5041936794081048482}
   - component: {fileID: 1217933913781292366}
+<<<<<<< HEAD
   - component: {fileID: 1798848263570285796}
+=======
+  - component: {fileID: 781852953514819063}
+>>>>>>> dfa6395af90c91800df35947daae937bdf6a45c6
   m_Layer: 0
   m_Name: Car4
   m_TagString: Car4
@@ -173,7 +177,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4855695, y: 0.8}
   m_EdgeRadius: 0
+<<<<<<< HEAD
 --- !u!114 &1798848263570285796
+=======
+--- !u!114 &781852953514819063
+>>>>>>> dfa6395af90c91800df35947daae937bdf6a45c6
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
