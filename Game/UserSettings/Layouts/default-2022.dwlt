@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 780.8
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 41728
+  controlID: 127
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 41729
+  controlID: 51
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 41730
+  controlID: 52
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -781,9 +781,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.551375, y: 6.722055, z: -0.15345363}
+    m_Target: {x: -22.648962, y: 24.73378, z: -0.4982729}
     speed: 2
-    m_Value: {x: 4.551375, y: 6.722055, z: -0.15345363}
+    m_Value: {x: -22.434715, y: 24.558487, z: -0.47455448}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -833,9 +833,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 26.232134
+    m_Target: 55.079834
     speed: 2
-    m_Value: 26.232134
+    m_Value: 52.707973
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -897,9 +897,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 7a620000
       m_LastClickedID: 0
-      m_ExpandedIDs: 60dffeff9cfaffff1afbffff88610000
+      m_ExpandedIDs: 9ae1ffff1afbffffb0610000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -987,7 +987,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 0
+    m_HSlider: 1
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
@@ -1001,18 +1001,18 @@ MonoBehaviour:
       y: 21
       width: 472.40002
       height: 443.6
-    m_Scale: {x: 0.15377605, y: 0.15377605}
-    m_Translation: {x: 236.20001, y: 221.8}
+    m_Scale: {x: 0.19956177, y: 0.19956177}
+    m_Translation: {x: 265.06305, y: 221.8}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1536
-      y: -1442.3573
-      width: 3072
-      height: 2884.7146
+      x: -1328.2256
+      y: -1111.4353
+      width: 2367.187
+      height: 2222.8706
     m_MinimalGUI: 1
   m_defaultScale: 0.15377605
   m_LastWindowPixelSize: {x: 590.5, y: 580.75}
@@ -1066,7 +1066,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Scripts
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1074,16 +1074,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 37
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Scripts
   m_LastFoldersGridSize: 37
   m_LastProjectPath: G:\TKVaPTGame\BTL\CrossyChicken\Game
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 55.80002}
-    m_SelectedIDs: e2640000
-    m_LastClickedID: 25826
-    m_ExpandedIDs: 00000000c4640000e864000000ca9a3b
+    scrollPos: {x: 0, y: 23.800018}
+    m_SelectedIDs: 5e620000
+    m_LastClickedID: 25182
+    m_ExpandedIDs: 000000004462000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1111,7 +1111,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c4640000
+    m_ExpandedIDs: 0000000044620000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000166300001063000082650000c6650000186700002267000060650000546500006c63000066630000486300004a63000046630000686300006a630000146400001264000014630000666200006462000062620000d4620000846200001a620000f4640000fe64000000650000fc6400001c62000010650000ee6a0000f26a0000f66a0000bc6200000000000034990000ec620000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1242,7 +1242,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 1061.6001
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
