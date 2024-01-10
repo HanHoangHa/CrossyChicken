@@ -1181,7 +1181,11 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
+<<<<<<< HEAD
   Loop: 0
+=======
+  Loop: 1
+>>>>>>> main
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1704,6 +1708,7 @@ SceneRoots:
   - {fileID: 830344998}
   - {fileID: 1348279422}
   - {fileID: 641464482}
+<<<<<<< HEAD
 =======
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
@@ -3411,3 +3416,5 @@ SceneRoots:
   - {fileID: 1348279422}
   - {fileID: 641464482}
 >>>>>>> dfa6395af90c91800df35947daae937bdf6a45c6
+=======
+>>>>>>> main

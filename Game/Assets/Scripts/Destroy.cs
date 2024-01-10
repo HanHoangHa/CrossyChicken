@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> main
 using UnityEngine;
 
 public class Destroy : MonoBehaviour
@@ -24,6 +27,7 @@ public class Destroy : MonoBehaviour
         }
     }
 }
+<<<<<<< HEAD
 =======
 using System.Collections;
 using System.Collections.Generic;
@@ -53,3 +57,5 @@ public class Destroy : MonoBehaviour
     }
 }
 >>>>>>> dfa6395af90c91800df35947daae937bdf6a45c6
+=======
+>>>>>>> main
