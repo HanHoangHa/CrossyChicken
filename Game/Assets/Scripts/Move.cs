@@ -9,6 +9,8 @@ public class Move : MonoBehaviour
     public GameObject gameOverUI;
     private int score = 0;
     public Text scoreText;
+    public Text endScoreText;
+    public Text endScoreTitle;
     public AudioClip jump;
     public AudioClip crash;
     public AudioClip death;
@@ -121,6 +123,9 @@ public class Move : MonoBehaviour
         {
             gameOver = true;
             gameOverUI.SetActive(true);
+            endScoreText.text = scoreText.text;
+            scoreText.text = "";
+            endScoreTitle.text = "";
             playerAudio.PlayOneShot(fallingWater, 1f);
             transform.position = new Vector3(14, transform.position.y, 0);
             Debug.Log("GameOver");
@@ -129,6 +134,9 @@ public class Move : MonoBehaviour
         {
             gameOver = true;
             gameOverUI.SetActive(true);
+            endScoreText.text = scoreText.text;
+            scoreText.text = "";
+            endScoreTitle.text = "";
             playerAudio.PlayOneShot(crash, 1f);
             Debug.Log("GameOver");
         }
