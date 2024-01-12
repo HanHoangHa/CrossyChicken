@@ -9,8 +9,6 @@ public class Move : MonoBehaviour
     public GameObject gameOverUI;
     private int score = 0;
     public Text scoreText;
-    public Text endScoreText;
-    public Text endScoreTitle;
     public AudioClip jump;
     public AudioClip crash;
     public AudioClip death;
@@ -24,6 +22,7 @@ public class Move : MonoBehaviour
     bool hasObstacleBelow = false;
     bool hasObstacleLeft = false;
     bool hasObstacleRight = false;
+    private bool isPaused = false; // Biến kiểm tra trạng thái tạm dừng
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +113,19 @@ public class Move : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            isPaused = !isPaused;
+        }
+
+        // Nếu trò chơi đang tạm dừng, không thực hiện các hành động cập nhật khác
+        if (isPaused)
+        {
+            return;
+        }
+
     }
 
     //Kiểm tra va chạm
@@ -123,9 +135,6 @@ public class Move : MonoBehaviour
         {
             gameOver = true;
             gameOverUI.SetActive(true);
-            endScoreText.text = scoreText.text;
-            scoreText.text = "";
-            endScoreTitle.text = "";
             playerAudio.PlayOneShot(fallingWater, 1f);
             transform.position = new Vector3(14, transform.position.y, 0);
             Debug.Log("GameOver");
@@ -134,9 +143,6 @@ public class Move : MonoBehaviour
         {
             gameOver = true;
             gameOverUI.SetActive(true);
-            endScoreText.text = scoreText.text;
-            scoreText.text = "";
-            endScoreTitle.text = "";
             playerAudio.PlayOneShot(crash, 1f);
             Debug.Log("GameOver");
         }
@@ -145,9 +151,21 @@ public class Move : MonoBehaviour
     //Tính điểm
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        score += 1;
-        scoreText.text = score.ToString();
-        BoxCollider2D.Destroy(collision);
+        if (collision.gameObject.CompareTag("ItemDelete"))
+        {
+            DeleteCarsByTag("Car1");
+            DeleteCarsByTag("Car2");
+            DeleteCarsByTag("Car3");
+            DeleteCarsByTag("Car4");
+            Destroy(collision.gameObject);
+        }
+        else if(!collision.gameObject.CompareTag("ItemDelete") && !collision.gameObject.CompareTag("ItemSlow"))
+        {
+            score += 1;
+            scoreText.text = score.ToString();
+            BoxCollider2D.Destroy(collision);
+        }
+
     }
 
     //Du doan chuong ngai vat
@@ -157,5 +175,16 @@ public class Move : MonoBehaviour
         hasObstacleBelow = Physics2D.Raycast(transform.position, Vector3.down, 2, layerMask);
         hasObstacleLeft = Physics2D.Raycast(transform.position, Vector3.left, 2, layerMask);
         hasObstacleRight = Physics2D.Raycast(transform.position, Vector3.right, 2, layerMask);
+    }
+
+    //Delete car khi an item DeleteCar
+    void DeleteCarsByTag(string tag)
+    {
+        GameObject[] carsToDelete = GameObject.FindGameObjectsWithTag(tag);
+
+        foreach (GameObject cars in carsToDelete)
+        {
+            Destroy(cars);
+        }
     }
 }

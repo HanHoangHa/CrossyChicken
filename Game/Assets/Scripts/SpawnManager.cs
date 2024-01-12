@@ -4,9 +4,10 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] car;
     public GameObject[] grassAndRoad;
+    public GameObject[] items;
     private Move moveScript;
-    private float startDelay = 2f;
-    private float spawnInterval = 2f;
+    private float startDelay = 3f;
+    private float spawnInterval = 3f;
     private float previousY;
     private int[] posXArray = { 11, 13, 15, 17, 19, 21, -11, -13, -15, -17, -19, -21 };
 
@@ -35,6 +36,15 @@ public class SpawnManager : MonoBehaviour
             int randomGrassRoad = Random.Range(0, grassAndRoad.Length);
             Vector3 spawnPosition = new Vector3(0, 10, 0) + new Vector3(0, previousY, 0);
             Instantiate(grassAndRoad[randomGrassRoad], spawnPosition, grassAndRoad[randomGrassRoad].transform.rotation);
+            if (randomGrassRoad == 3 || randomGrassRoad == 4 || randomGrassRoad == 5 || randomGrassRoad == 6)
+            {
+                int randomValue = Random.Range(1, 11);
+                if(randomValue == 5 || randomValue == 25)
+                {
+                    int itemNumber = Random.Range(0, items.Length);
+                    Instantiate(items[itemNumber], spawnPosition, items[itemNumber].transform.rotation);
+                }
+            }
         }
     }
     void SpawnCar()
