@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class CarLeftRight : MonoBehaviour
 {
-    private float speedCar1 = 8;
+    private float speedCar1 = 7;
     private float speedCar2 = 6;
-    private float speedCar3 = 9;
+    private float speedCar3 = 8;
     private float speedCar4 = 5;
     private Move MoveScript;
     // Start is called before the first frame update
