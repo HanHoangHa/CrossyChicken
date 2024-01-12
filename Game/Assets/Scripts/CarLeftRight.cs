@@ -47,6 +47,7 @@ public class CarLeftRight : MonoBehaviour
             speedCar3 *= 0.5f;
             speedCar4 *= 0.5f;
             StartCoroutine(ReduceSpeed());
+            gameObject.transform.position = new Vector3(14, transform.position.y, 0);
         }
     }
     IEnumerator ReduceSpeed() //dem nguoc thoi gian
@@ -56,5 +57,6 @@ public class CarLeftRight : MonoBehaviour
         speedCar2 *= 2f;
         speedCar3 *= 2f;
         speedCar4 *= 2f;
+        Destroy(gameObject);
     }
 }
