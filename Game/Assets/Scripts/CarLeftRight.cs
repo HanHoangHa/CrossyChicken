@@ -1,16 +1,18 @@
+﻿using System.Collections;
 using UnityEngine;
 
 public class CarLeftRight : MonoBehaviour
 {
-    private float speedCar1 = 7;
-    private float speedCar2 = 6;
-    private float speedCar3 = 8;
-    private float speedCar4 = 5;
+    private static float speedCar1 =8;
+    private static float speedCar2 =6;
+    private static float speedCar3 =9;
+    private static float speedCar4 =5;
     private Move MoveScript;
-    // Start is called before the first frame update
+    // Start is called before
+    // the first frame update
     void Start()
     {
-        MoveScript = GameObject.Find("Chicken").GetComponent<Move>();
+    MoveScript = GameObject.Find("Chicken").GetComponent<Move>();
     }
 
     // Update is called once per frame
@@ -19,6 +21,7 @@ public class CarLeftRight : MonoBehaviour
         if (MoveScript.gameOver == false && gameObject.CompareTag("Car1"))
         {
             transform.Translate(Vector3.left * speedCar1 * Time.deltaTime);
+            Debug.Log(speedCar1);
         }
         if (MoveScript.gameOver == false && gameObject.CompareTag("Car2"))
         {
@@ -32,5 +35,26 @@ public class CarLeftRight : MonoBehaviour
         {
             transform.Translate(Vector3.left * speedCar4 * Time.deltaTime);
         }
+        
+
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Chicken"))
+        {
+            speedCar1 *= 0.5f;
+            speedCar2 *= 0.5f;
+            speedCar3 *= 0.5f;
+            speedCar4 *= 0.5f;
+            StartCoroutine(ReduceSpeed());
+        }
+    }
+    IEnumerator ReduceSpeed() //dem nguoc thoi gian
+    {
+        yield return new WaitForSeconds(5); // tam dung thuc thi trong 5 giay
+        speedCar1 *= 2f;
+        speedCar2 *= 2f;
+        speedCar3 *= 2f;
+        speedCar4 *= 2f;
     }
 }
