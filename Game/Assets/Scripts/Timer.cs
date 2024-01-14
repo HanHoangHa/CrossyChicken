@@ -1,6 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
+using UnityEngine.PlayerLoop;
+
+public class Timer : MonoBehaviour
+{
+    Move moveScript;
+    AudioSource audioSource;
+    public AudioClip death;
+    public GameObject gameOverUI;
+    private float timeUpdate;
+    private float distanceTime;
+    void Start()
+    {
+        moveScript = GetComponent<Move>();
+        audioSource = GetComponent<AudioSource>();
+=======
 using TMPro;
 using UnityEngine.SceneManagement;
 
@@ -24,10 +40,27 @@ public class Timer : MonoBehaviour
         moveScript = GetComponent<Move>();
         audioSource = GetComponent<AudioSource>();
         posYChicken = transform.position.y;
+>>>>>>> f4b8d0330673f063221564c524af76365613fda2
     }
 
     void Update()
     {
+<<<<<<< HEAD
+        distanceTime = Time.time - timeUpdate;
+        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) && moveScript.gameOver == false)
+        {
+            timeUpdate = Time.time;
+        }
+        if(distanceTime > 5 && moveScript.gameOver == false)
+        {
+            moveScript.gameOver = true;
+            Debug.Log(moveScript.gameOver);
+            audioSource.PlayOneShot(death, 1f);
+            gameOverUI.SetActive(true);
+        }
+    }
+
+=======
         if (remainingTime > 0 && !gameOverTriggered) // Thêm điều kiện kiểm tra gameOverTriggered
         {
             remainingTime -= Time.deltaTime;
@@ -61,4 +94,5 @@ public class Timer : MonoBehaviour
         gameOverUI.SetActive(true);
         gameOverTriggered = true; // Đặt gameOverTriggered thành true để đảm bảo TriggerGameOver chỉ được gọi một lần
     }
+>>>>>>> f4b8d0330673f063221564c524af76365613fda2
 }
