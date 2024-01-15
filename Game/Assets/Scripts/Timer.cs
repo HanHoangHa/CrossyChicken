@@ -20,6 +20,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
+
         distanceTime = Time.time - timeUpdate;
         if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) && moveScript.gameOver == false)
         {
@@ -33,5 +34,5 @@ public class Timer : MonoBehaviour
             gameOverUI.SetActive(true);
         }
     }
-
 }
+
