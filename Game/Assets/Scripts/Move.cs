@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,13 +25,15 @@ public class Move : MonoBehaviour
     bool hasObstacleBelow = false;
     bool hasObstacleLeft = false;
     bool hasObstacleRight = false;
+    private bool isPaused = false; // Biến kiểm tra trạng thái tạm dừng
+    public static bool Paused = false;
+    public GameObject PauseMenuCanvas;
 
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         scoreText.text = score.ToString();
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         playerAudio = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         posChicken = transform.position;
@@ -101,19 +104,45 @@ public class Move : MonoBehaviour
         //Menu game over
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameOver = true;
-            gameOverUI.SetActive(true);
+            if (gameOver == false) 
+            {
+                gameOverUI.SetActive(true);
+                gameOver = true;
+                PauseMenuCanvas.SetActive(false);
+                
+            }
+            else
+            {
+                Application.Quit();
+            }
+            
         }
-        if (gameOverUI.activeInHierarchy)
+        if ((gameOverUI.activeInHierarchy) || (PauseMenuCanvas.activeInHierarchy))
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+        else if (Input.GetKeyUp(KeyCode.P))
+        {
+            if (Paused)
+            {
+                Play();
+            }
+            else
+            {
+                Stop();
+            }
+            
+        }
+        
         else
         {
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+        
+
+
     }
 
     //Kiểm tra va chạm
@@ -121,8 +150,8 @@ public class Move : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("River"))
         {
-            gameOver = true;
             gameOverUI.SetActive(true);
+            gameOver = true;
             endScoreText.text = scoreText.text;
             scoreText.text = "";
             endScoreTitle.text = "";
@@ -132,8 +161,8 @@ public class Move : MonoBehaviour
         }
         else
         {
-            gameOver = true;
             gameOverUI.SetActive(true);
+            gameOver = true;           
             endScoreText.text = scoreText.text;
             scoreText.text = "";
             endScoreTitle.text = "";
@@ -145,9 +174,21 @@ public class Move : MonoBehaviour
     //Tính điểm
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        score += 1;
-        scoreText.text = score.ToString();
-        BoxCollider2D.Destroy(collision);
+        if (collision.gameObject.CompareTag("ItemDelete"))
+        {
+            DeleteCarsByTag("Car1");
+            DeleteCarsByTag("Car2");
+            DeleteCarsByTag("Car3");
+            DeleteCarsByTag("Car4");
+            Destroy(collision.gameObject);
+        }
+        else if(!collision.gameObject.CompareTag("ItemDelete") && !collision.gameObject.CompareTag("ItemSlow"))
+        {
+            score += 1;
+            scoreText.text = score.ToString();
+            BoxCollider2D.Destroy(collision);
+        }
+
     }
 
     //Du doan chuong ngai vat
@@ -157,5 +198,31 @@ public class Move : MonoBehaviour
         hasObstacleBelow = Physics2D.Raycast(transform.position, Vector3.down, 2, layerMask);
         hasObstacleLeft = Physics2D.Raycast(transform.position, Vector3.left, 2, layerMask);
         hasObstacleRight = Physics2D.Raycast(transform.position, Vector3.right, 2, layerMask);
+    }
+
+    //Delete car khi an item DeleteCar
+    void DeleteCarsByTag(string tag)
+    {
+        GameObject[] carsToDelete = GameObject.FindGameObjectsWithTag(tag);
+
+        foreach (GameObject cars in carsToDelete)
+        {
+            Destroy(cars);
+        }
+    }
+    void Stop()
+    {
+        PauseMenuCanvas.SetActive(true);
+        Time.timeScale = 0f;
+        Paused = true;
+        AudioListener.pause = true; // Tắt âm thanh
+    }
+
+    public void Play()
+    {
+        PauseMenuCanvas.SetActive(false);
+        Time.timeScale = 1f;
+        Paused = false;
+        AudioListener.pause = false; // Bật âm thanh
     }
 }

@@ -13,6 +13,9 @@ TagManager:
   - Car3
   - Car4
   - River
+  - ItemDelete
+  - ItemSlow
+  - Chicken
   layers:
   - Default
   - TransparentFX

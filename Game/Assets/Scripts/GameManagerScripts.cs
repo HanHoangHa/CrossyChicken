@@ -18,6 +18,7 @@ public class GameManagerScripts : MonoBehaviour
     public void restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        AudioListener.pause = false;
     }
     public void mainMenu()
     {
