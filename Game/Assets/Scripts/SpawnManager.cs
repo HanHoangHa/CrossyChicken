@@ -31,7 +31,7 @@ public class SpawnManager : MonoBehaviour
 
         float currentY = GameObject.Find("Chicken").transform.position.y;
         float rangeY = currentY - previousY;
-        if (Input.GetKeyDown(KeyCode.W) && moveScript.gameOver == false && rangeY > 0)
+        if ( moveScript.gameOver == false && rangeY > 0)
         {
             previousY += 2;
             int randomGrassRoad = Random.Range(0, grassAndRoad.Length);
@@ -40,7 +40,7 @@ public class SpawnManager : MonoBehaviour
             if (randomGrassRoad == 3 || randomGrassRoad == 4 || randomGrassRoad == 5 || randomGrassRoad == 6)
             {
                 int randomValue = Random.Range(1, 11);
-                if(randomValue == 5 || randomValue == 25)
+                if(randomValue == 5)
                 {
                     int itemNumber = Random.Range(0, items.Length);
                     Instantiate(items[itemNumber], spawnPosition, items[itemNumber].transform.rotation);

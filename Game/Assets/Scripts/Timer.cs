@@ -32,6 +32,9 @@ public class Timer : MonoBehaviour
             Debug.Log(moveScript.gameOver);
             audioSource.PlayOneShot(death, 1f);
             gameOverUI.SetActive(true);
+            moveScript.endScoreText.text = moveScript.scoreText.text;
+            moveScript.scoreText.text = "";
+            moveScript.endScoreTitle.text = "";
         }
     }
 }

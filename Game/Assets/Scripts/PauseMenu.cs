@@ -28,6 +28,11 @@ public class PauseMenu : MonoBehaviour
             {
                 Stop();
             }
+            if (PauseMenuCanvas.activeInHierarchy)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
 
         // Check for input to go back when the pause menu is active
